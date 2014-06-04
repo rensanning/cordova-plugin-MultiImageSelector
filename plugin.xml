@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:rim="http://www.blackberry.com/ns/widgets"
+    id="com.rensanning.cordova.multi-image-selector"
+    version="0.0.1">
+
+	<name>Multi Image Selector</name>
+	 
+	<description>
+		This plugin allows selection of multiple images from the camera roll / gallery in a cordova app
+	</description>
+	
+	<license>Apache 2.0</license>
+
+	<engines>
+		<engine name="cordova" version=">=3.0.0" />
+	</engines>  
+
+	<js-module src="www/MultiImageSelector.js" name="MultiImageSelector">
+		<clobbers target="plugins.multiImageSelector" />
+	</js-module>
+
+	<!-- android -->
+	<platform name="android">
+		<config-file target="res/xml/config.xml" parent="/*">
+			<feature name="MultiImageSelector">
+				<param name="android-package" value="com.rensanning.multiselect.MultiImageSelector"/>
+			</feature>
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest/application">
+		    <activity android:label="Gallery" android:name="com.rensanning.multiselect.CustomGalleryActivity">
+                <intent-filter>
+					<action android:name="luminous.ACTION_PICK" />
+					<action android:name="luminous.ACTION_MULTIPLE_PICK" />
+					<category android:name="android.intent.category.DEFAULT" />
+				</intent-filter>
+            </activity>
+		</config-file>
+		
+		<config-file target="AndroidManifest.xml" parent="/manifest">
+		    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+		    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+		</config-file>
+
+		<source-file src="src/android/libs/universal-image-loader-1.9.0.jar" target-dir="libs"/>
+
+		<source-file src="src/android/src/com/rensanning/multiselect/Action.java" target-dir="src/com/rensanning/multiselect" />
+		<source-file src="src/android/src/com/rensanning/multiselect/CustomGallery.java" target-dir="src/com/rensanning/multiselect" />
+		<source-file src="src/android/src/com/rensanning/multiselect/CustomGalleryActivity.java" target-dir="src/com/rensanning/multiselect" />
+		<source-file src="src/android/src/com/rensanning/multiselect/GalleryAdapter.java" target-dir="src/com/rensanning/multiselect" />
+		<source-file src="src/android/src/com/rensanning/multiselect/MultiImageSelector.java" target-dir="src/com/rensanning/multiselect" />
+		<source-file src="src/android/src/com/rensanning/multiselect/Utility.java" target-dir="src/com/rensanning/multiselect" />
+		
+		<source-file src="src/android/res/drawable/button_bg.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/check_icon.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/no_media.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/tick_mark_bg.xml" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable/trasnparent_bg.png" target-dir="res/drawable"/>
+		<source-file src="src/android/res/drawable-hdpi/button_default.9.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/button_hover.9.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/check_icon.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-hdpi/top_bar.png" target-dir="res/drawable-hdpi"/>
+		<source-file src="src/android/res/drawable-mdpi/button_default.9.png" target-dir="res/drawable-mdpi"/>
+		<source-file src="src/android/res/drawable-mdpi/button_hover.9.png" target-dir="res/drawable-mdpi"/>
+		<source-file src="src/android/res/drawable-mdpi/check_icon.png" target-dir="res/drawable-mdpi"/>
+		<source-file src="src/android/res/drawable-mdpi/top_bar.png" target-dir="res/drawable-mdpi"/>
+		<source-file src="src/android/res/drawable-xhdpi/button_default.9.png" target-dir="res/drawable-xhdpi"/>
+		<source-file src="src/android/res/drawable-xhdpi/button_hover.9.png" target-dir="res/drawable-xhdpi"/>
+		<source-file src="src/android/res/drawable-xhdpi/check_icon.png" target-dir="res/drawable-xhdpi"/>
+		<source-file src="src/android/res/drawable-xhdpi/top_bar.png" target-dir="res/drawable-xhdpi"/>
+		<source-file src="src/android/res/layout/gallery.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/gallery_item.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/layout/titlebar.xml" target-dir="res/layout"/>
+		<source-file src="src/android/res/values-mdpi/colors.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values-mdpi/dimen.xml" target-dir="res/values"/>
+		<source-file src="src/android/res/values-mdpi/styles.xml" target-dir="res/values"/>
+	</platform>
+</plugin>
